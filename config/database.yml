@@ -8,7 +8,7 @@ default: &default
 
 development:
   <<: *default
-  database: url_shortener_challenge_development
+  database: <%= "#{ENV['POSTGRES_DB']}_development" %>
   host: db
   username: <%= ENV['POSTGRES_USER'] %>
   password: <%= ENV['POSTGRES_PASSWORD'] %>
@@ -16,7 +16,7 @@ development:
 
 test:
   <<: *default
-  database: url_shortener_challenge_test
+  database: <%= "#{ENV['POSTGRES_DB']}_test" %>
   host: db
   username: <%= ENV['POSTGRES_USER'] %>
   password: <%= ENV['POSTGRES_PASSWORD'] %>
@@ -24,6 +24,6 @@ test:
 
 production:
   <<: *default
-  database: url_shortener_challenge_production
-  username: url_shortener_challenge
-  password: <%= ENV["URL_SHORTENER_CHALLENGE_DATABASE_PASSWORD"] %>
+  database: <%= "#{ENV['POSTGRES_DB']}_production" %>
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>

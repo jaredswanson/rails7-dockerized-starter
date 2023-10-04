@@ -28,17 +28,30 @@ Dive into your Rails projects faster than ever! This barebones starter kit is yo
    git clone https://github.com/jaredswanson/rails7-dockerized-starter.git
    cd rails7-dockerized-starter
    ```
+
 2. **Environment Setup**:
-   Duplicate `.env.example` to `.env` and modify if necessary.
-3. **Launch the App**:
+   Duplicate `.env.example` to `.env` and modify as necessary. Ensure you set the appropriate values for `POSTGRES_USER`, `POSTGRES_PASSWORD`, and `POSTGRES_DB`.
+
+3. **Build the Docker images**:
+   ```bash
+   docker-compose build
+   ```
+
+4. **Set up the database**:
+   ```bash
+   docker-compose run web rails db:create db:migrate
+   ```
+
+5. **Launch the App**:
    ```bash
    docker compose up -d
    ```
-4. Your Rails app is now live at `http://localhost:3425/`!
+
+6. Your Rails app is now live at `http://localhost:3425/`!
 
 ### Making It Yours
 
-- **Database Config**: Modify `.env` to set your PostgreSQL credentials.
+- **Database Config**: Modify `.env` to set your PostgreSQL credentials and database name.
 - **Port Customization**: The default port is `3425`, but you can alter this in `docker-compose.yml`.
 
 ### Lend a Hand!
