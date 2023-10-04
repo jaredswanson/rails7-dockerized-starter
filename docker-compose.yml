@@ -1,0 +1,33 @@
+version: '3.2'
+services:
+  db:
+    image: postgres:latest
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PW}
+        
+  redis:
+    image: redis:latest
+
+  web:
+    build: .
+    command: ["foreman", "start", "-f", "Procfile.dev"]
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/app
+    ports:
+      - "3425:3000"
+    depends_on:
+      - db
+      - redis
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PW}
+      REDIS_URL: redis://redis:6379/0
+
+volumes:
+  postgres_data:
+

@@ -1,0 +1,29 @@
+# PostgreSQL. Versions 9.3 and up are supported.
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+
+development:
+  <<: *default
+  database: url_shortener_challenge_development
+  host: db
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+
+
+test:
+  <<: *default
+  database: url_shortener_challenge_test
+  host: db
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+
+
+production:
+  <<: *default
+  database: url_shortener_challenge_production
+  username: url_shortener_challenge
+  password: <%= ENV["URL_SHORTENER_CHALLENGE_DATABASE_PASSWORD"] %>
