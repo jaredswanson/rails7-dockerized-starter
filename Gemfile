@@ -65,3 +65,4 @@ end
 gem 'devise'
 gem 'view_component'
 gem 'tailwindcss-rails'
+gem 'sidekiq'
